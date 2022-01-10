@@ -10,40 +10,44 @@
 
 <body>
     <div id="calculator">
-        <div class="row">
-            <div id="display">0</div>
-        </div>
-        <div class="row">
-            <button class="btn btn-style-1" tapindex="-1" focusable="false" id="btn-AC"  onclick="pressAC()">AC</button>
-            <button class="btn btn-style-1" tapindex="-1" id="btn-Change"  onclick="pressChangeSign()">+/-</button>
-            <button class="btn btn-style-1" tapindex="-1" id="btn-%"  onclick="pressPercent()">%</button>
-            <button class="btn btn-style-4" tapindex="-1" id="btn-/"  onclick="pressDivide()">/</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="press7()">7</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="press8()">8</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="press9()">9</button>
-            <button class="btn btn-style-4" tapindex="-1" id="btn-*"  onclick="pressMultiply()">X</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="press4()">4</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="press5()">5</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="press6()">6</button>
-            <button class="btn btn-style-4" tapindex="-1" id="btn--"  onclick="pressMinus()">-</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="press1()">1</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="press2()">2</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="press3()">3</button>
-            <button class="btn btn-style-4" tapindex="-1" id="btn-+"  onclick="pressAdd()">+</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="press0()">0</button>
-            <button class="btn btn-style-2" tapindex="-1" id="btn-,"  onclick="pressComma()">,</button>
-            <button class="btn btn-style-4" tapindex="-1" id="btn-="  onclick="pressEquals()">=</button>
-        </div>
-        
+            <div class="row">
+                <div id="display">0</div>
+            </div>
+            <div class="row">
+                <button class="btn btn-style-1" tapindex="-1" focusable="false" id="btn-AC"  onclick="pressAC()">AC</button>
+                <button class="btn btn-style-1" tapindex="-1" id="btn-Change"  onclick="pressChangeSign()">+/-</button>
+                <button class="btn btn-style-1" tapindex="-1" id="btn-%"  onclick="pressPercent()">%</button>
+                <button class="btn btn-style-4" tapindex="-1" id="btn-/"  onclick="pressDivide()">/</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="press7()">7</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="press8()">8</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="press9()">9</button>
+                <button class="btn btn-style-4" tapindex="-1" id="btn-*"  onclick="pressMultiply()">X</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="press4()">4</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="press5()">5</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="press6()">6</button>
+                <button class="btn btn-style-4" tapindex="-1" id="btn--"  onclick="pressMinus()">-</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="press1()">1</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="press2()">2</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="press3()">3</button>
+                <button class="btn btn-style-4" tapindex="-1" id="btn-+"  onclick="pressAdd()">+</button>
+            </div>
+            <div class="row">
+                <button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="press0()">0</button>
+                <button class="btn btn-style-2" tapindex="-1" id="btn-,"  onclick="pressComma()">,</button>
+                <button class="btn btn-style-4" tapindex="-1" id="btn-="  onclick="pressEquals()">=</button>
+            </div>
     </div>
+    <hr>
+    <label class="switch">
+        <input type="checkbox" id="switch">
+        <span class="slider round"></span>
+    </label>
 
 
 
