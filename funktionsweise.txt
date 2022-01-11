@@ -1,0 +1,22 @@
+Für die Funktionsweise ist es sehr wichtig, dass alle Berechnungen nach ein und dem selben Schema ablaufen.
+
+In der Taschenrechnerapp gibt es folgende Rechenoperationen:
+
+    1. Wertrückgabe Instant (Bsp. xHoch2)
+    2. Wertverrechnung mit einem anderen Wert (Bsp. Addition)
+    3. Wertverrechnung mit n Werten (Bsp. Setzen von Klammern)
+
+Interessant ist, dass die Klammerfunktion auf dem iPhone gar nicht Funktioniert.
+Man Stand also vor dem Gleichen Problem, wollte dieses aber nicht weiter lösen.
+
+Ich habe hierbei folgende Idee:
+Die Funktionsweise zwischen der simplen- und der extended Edition unterscheiden sich.
+
+Bei den ersten Beiden Methoden reicht die simple Programmierung vollkommen aus.
+Diese Funktionalität habe ich bereits programmiert und diese funktioniert auch.
+
+Für die Komplexeren Funktionen wird die Funktionsweise in weiten stücken angepasst.
+Hierbei Funktioniert das Ganze eher wie bei einem üblichen Grafikfähigen Taschenrechner.
+Dabei wird erst die Gesamte berechnung abgewartet und erst ganz am Ende aufgelöst.
+Bei der Berechnung des Ergebnisses steht man vor einem Berechnungsstring, welcher dann Stück für Stück
+berechnet wird. 

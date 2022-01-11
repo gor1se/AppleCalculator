@@ -8,12 +8,18 @@ html, body {
 
 #calculator {
     display: block;
+    width: 300px;
     text-align: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row {
+    display: block;
 }
 
 #display{
-    padding-right: 9rem;
+    padding-right: 7.5%;
     text-align: right;
 }
 

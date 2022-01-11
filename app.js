@@ -1,7 +1,7 @@
 'use strice'
 
 
-let inputOne = '';
+let inputOne = '0';
 let action = '';
 let valueOne = 0;
 let valueTwo = 0;
@@ -9,11 +9,19 @@ let result = 0;
 
 
 const refreshDisplay = (value) => {
-    document.getElementById('display').innerHTML = value;
+    if((value.toString()).endsWith(',')){
+        value.replace(',','.');
+        value += '01';
+        console.log({value});
+        document.getElementById('display').innerHTML = (Number.parseFloat(value)).toLocaleString('de');
+    } else {
+        document.getElementById('display').innerHTML = (Number.parseFloat(value)).toLocaleString('de');
+    }
+    
 }
 
-const adjustPadding = (value)=>{
-    document.getElementById('display').style.paddingRight = value;
+const adjustWidth = (value)=>{
+    document.getElementById('calculator').style.width = value;
 }
 
 const resetAll = () => {
@@ -25,35 +33,16 @@ const resetAll = () => {
     refreshDisplay(inputOne);
 }
 
-// const addDots = (str) => {
-//     if(str.includes(",")){
-//         let first = str.split(",");
-//         let length = first[0].length;
-//         let left = length % 3;
-//         let newString = '';
-//         for(let i = left; i < length; i++) {
-//             newString+=first[0][i];
-//             console.log(i%3);
-//             if((i%3)===0){
-//                 newString+='.'
-//             }
-//         }
-//         return newString;
-//     } else {
-//         return str;
-//     }
-// }
-
 document.getElementById('switch').checked = false;
 
 document.getElementById('switch').addEventListener('change',() =>{
     if(document.getElementById('switch').checked){
         document.getElementById('calculator').innerHTML = extended; 
-        adjustPadding('4rem');
+        adjustWidth('800px');
         resetAll();
     } else {
         document.getElementById('calculator').innerHTML = simple;
-        adjustPadding('9rem');
+        adjustWidth('300px');
         resetAll();
     }
 });
@@ -81,15 +70,9 @@ const pressEquals = () => {
         result = valueOne / valueTwo;
     }
     inputOne = result.toString();
-    result=result.toString().replace(".",",");
+    //result=result.toString().replace(".",",");
     refreshDisplay(result);
 
-    //refreshDisplay(addDots(result));
-
-    // Teile den String am Komma und beachte nur den ersten Teil
-    // Ermittle die Länge
-    // Mache Modulo 3
-    // Das Ergebnis wird übersprüngen, dann folgt der erste "." und dann alle Drei werte ein Punkt
 }
 
 const pressAdd = () => {
@@ -126,7 +109,11 @@ const pressDivide = () => {
 
 const pressChangeSign = () => {
     toggleAnimation('btn-Change', 'animation-2');
-    inputOne = '-' + inputOne;
+    if(!(inputOne.includes('-'))){
+        inputOne = '-' + inputOne;
+    } else {
+        inputOne = inputOne.replace('-', '');
+    }
     refreshDisplay(inputOne);
 }
 
@@ -148,113 +135,67 @@ const pressAC = () => {
     refreshDisplay(inputOne);
 }
 
-const press1 = () => {
-    toggleAnimation('btn-1', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '1'; 
-    } else {
-        inputOne = '1';
-    }
-    refreshDisplay(inputOne);
-}
+// Input Number
 
-const press2 = () => {
-    toggleAnimation('btn-2', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '2'; 
-    } else {
-        inputOne = '2';
+const pressZahl = (id) => {
+    toggleAnimation(id, 'animation-1');
+    let zahl;
+    switch (id) {
+        case 'btn-0':
+            zahl = '0';
+            break;
+        case 'btn-1':
+            zahl = '1';
+            break;
+        case 'btn-2':
+            zahl = '2';
+            break;
+        case 'btn-3':
+            zahl = '3';
+            break;
+        case 'btn-4':
+            zahl = '4';
+            break;
+        case 'btn-5':
+            zahl = '5';
+            break;
+        case 'btn-6':
+            zahl = '6';
+            break;
+        case 'btn-7':
+            zahl = '7';
+            break;
+        case 'btn-8':
+            zahl = '8';
+            break;
+        case 'btn-9':
+            zahl = '9';
+            break;
+        default:
+            break;
     }
-    refreshDisplay(inputOne);
-}
-
-const press3 = () => {
-    toggleAnimation('btn-3', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '3'; 
+    if(inputOne === '0'){
+        inputOne = zahl;
+    } else if (inputOne === '-0'){
+        inputOne = `-${zahl}`;
     } else {
-        inputOne = '3';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press4 = () => {
-    toggleAnimation('btn-4', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '4'; 
-    } else {
-        inputOne = '4';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press5 = () => {
-    toggleAnimation('btn-5', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '5'; 
-    } else {
-        inputOne = '5';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press6 = () => {
-    toggleAnimation('btn-6', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '6'; 
-    } else {
-        inputOne = '6';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press7 = () => {
-    toggleAnimation('btn-7', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '7'; 
-    } else {
-        inputOne = '7';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press8 = () => {
-    toggleAnimation('btn-8', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '8'; 
-    } else {
-        inputOne = '8';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press9 = () => {
-    toggleAnimation('btn-9', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '9'; 
-    } else {
-        inputOne = '9';
-    }
-    refreshDisplay(inputOne);
-}
-
-const press0 = () => {
-    toggleAnimation('btn-0', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += '0'; 
-    } else {
-        inputOne = '0';
+        inputOne += zahl;
     }
     refreshDisplay(inputOne);
 }
 
 const pressComma = () => {
     toggleAnimation('btn-,', 'animation-1');
-    if(inputOne !== '0'){
-        inputOne += ','; 
-    } else {
-        inputOne = '0,'
+    // if(inputOne !== '0'){
+    //     inputOne += ','; 
+    // } else {
+    //     inputOne = '0,'
+    // }
+
+    if(!(inputOne.includes(','))){
+        inputOne += ',';
     }
+    console.log({inputOne});
     refreshDisplay(inputOne);
 }
 
@@ -408,34 +349,34 @@ document.addEventListener('keydown', (event) => {
     // console.log(event.key);
     // https://keycode.info/
     if(event.key === '1'){
-        press1();
+        pressZahl('btn-1');
     }
     if(event.key === '2'){
-        press2();
+        pressZahl('btn-2');
     }
     if(event.key === '3'){
-        press3();
+        pressZahl('btn-3');
     }
     if(event.key === '4'){
-        press4();
+        pressZahl('btn-4');
     }
     if(event.key === '5'){
-        press5();
+        pressZahl('btn-5');
     }
     if(event.key === '6'){
-        press6();
+        pressZahl('btn-6');
     }
     if(event.key === '7'){
-        press7();
+        pressZahl('btn-7');
     }
     if(event.key === '8'){
-        press8();
+        pressZahl('btn-8');
     }
     if(event.key === '9'){
-        press9();
+        pressZahl('btn-9');
     }
     if(event.key === '0'){
-        press0();
+        pressZahl('btn-0');
     }
     if(event.key === ','){
         pressComma();
@@ -490,25 +431,25 @@ const simple = `    <div id="calculator">
     <button class="btn btn-style-4" tapindex="-1" id="btn-/"  onclick="pressDivide()">/</button>
 </div>
 <div class="row">
-    <button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="press7()">7</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="press8()">8</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="press9()">9</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="pressZahl(this.id)">7</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="pressZahl(this.id)">8</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="pressZahl(this.id)">9</button>
     <button class="btn btn-style-4" tapindex="-1" id="btn-*"  onclick="pressMultiply()">X</button>
 </div>
 <div class="row">
-    <button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="press4()">4</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="press5()">5</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="press6()">6</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="pressZahl(this.id)">4</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="pressZahl(this.id)">5</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="pressZahl(this.id)">6</button>
     <button class="btn btn-style-4" tapindex="-1" id="btn--"  onclick="pressMinus()">-</button>
 </div>
 <div class="row">
-    <button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="press1()">1</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="press2()">2</button>
-    <button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="press3()">3</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="pressZahl(this.id)">1</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="pressZahl(this.id)">2</button>
+    <button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="pressZahl(this.id)">3</button>
     <button class="btn btn-style-4" tapindex="-1" id="btn-+"  onclick="pressAdd()">+</button>
 </div>
 <div class="row">
-    <button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="press0()">0</button>
+    <button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="pressZahl(this.id)">0</button>
     <button class="btn btn-style-2" tapindex="-1" id="btn-,"  onclick="pressComma()">,</button>
     <button class="btn btn-style-4" tapindex="-1" id="btn-="  onclick="pressEquals()">=</button>
 </div>
@@ -536,9 +477,9 @@ const extended = `        <div class="row">
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk10" onclick="funk10()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk11" onclick="funk11()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk12" onclick="funk12()">-_-</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="press7()">7</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="press8()">8</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="press9()">9</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-7"  onclick="pressZahl(this.id)">7</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-8"  onclick="pressZahl(this.id)">8</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-9"  onclick="pressZahl(this.id)">9</button>
 <button class="btn btn-style-4" tapindex="-1" id="btn-*"  onclick="pressMultiply()">X</button>
 </div>
 <div class="row">
@@ -548,9 +489,9 @@ const extended = `        <div class="row">
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk16" onclick="funk16()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk17" onclick="funk17()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk18" onclick="funk18()">-_-</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="press4()">4</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="press5()">5</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="press6()">6</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-4"  onclick="pressZahl(this.id)">4</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-5"  onclick="pressZahl(this.id)">5</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-6"  onclick="pressZahl(this.id)">6</button>
 <button class="btn btn-style-4" tapindex="-1" id="btn--"  onclick="pressMinus()">-</button>
 </div>
 <div class="row">
@@ -560,9 +501,9 @@ const extended = `        <div class="row">
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk22" onclick="funk22()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk23" onclick="funk23()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk24" onclick="funk24()">-_-</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="press1()">1</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="press2()">2</button>
-<button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="press3()">3</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-1" onclick="pressZahl(this.id)">1</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-2"  onclick="pressZahl(this.id)">2</button>
+<button class="btn btn-style-2" tapindex="-1" id="btn-3"  onclick="pressZahl(this.id)">3</button>
 <button class="btn btn-style-4" tapindex="-1" id="btn-+"  onclick="pressAdd()">+</button>
 </div>
 <div class="row">
@@ -572,7 +513,7 @@ const extended = `        <div class="row">
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk28" onclick="funk28()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk29" onclick="funk29()">π</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk30" onclick="funk30()">-_-</button>
-<button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="press0()">0</button>
+<button class="btn btn-style-3" tapindex="-1" id="btn-0"  onclick="pressZahl(this.id)">0</button>
 <button class="btn btn-style-2" tapindex="-1" id="btn-,"  onclick="pressComma()">,</button>
 <button class="btn btn-style-4" tapindex="-1" id="btn-="  onclick="pressEquals()">=</button>
 </div>`
