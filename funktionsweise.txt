@@ -20,3 +20,40 @@ Hierbei Funktioniert das Ganze eher wie bei einem üblichen Grafikfähigen Tasch
 Dabei wird erst die Gesamte berechnung abgewartet und erst ganz am Ende aufgelöst.
 Bei der Berechnung des Ergebnisses steht man vor einem Berechnungsstring, welcher dann Stück für Stück
 berechnet wird. 
+Hierbei soll am Ende ein Pro-Taschenrechner herauskommen. Ich möchte den normalen extended Taschenrechner von Apple deutlich verbessern.
+Dafür ist ein Cursor nötig.
+
+1. Standardrechner
+
+Ideen:
+    Bei Berechnungen:
+    Wann verändert sich welcher Wert?
+    So könnte man es Programieren:
+    Bool new Action welches sich auf positiv setzt sobald man ein Rechenzeichen drückt.
+    Neben dem Bool wird auch die Aktion abgespeichert ('Addition' '2');
+    Sobald man auf = geht wird der Wert wieder auf false gesetzt und die Berechnung ganz normal ausgeführt.
+    Drückt man allerdings auf = und der Wert ist bereits false wird die abgespeicherte Aktion ausgeführt.
+
+    //
+
+    Oder: 
+    Die Funktion Equals merkt sich was sie zuletzt getan hat.
+    Sie merkt sich die Action und den Wert.
+    Wenn man jetzt nochmal Equals aufruft überprüft die Funktion zuerst, ob sich der nächste Befehl vom vorherigen unterscheidet.
+    Wenn ja, dann wird alles wieder geändert, wenn nein, dann wird der vorherige Befehl nochmal ausgeführt.
+    Außerdem muss der Inputwert verglichen werden.
+    Hat sich der Inputwert nur wie erwartet verändert, bedeutet dies, dass kein neuer Befehl gegeben wurde.
+
+Bugs:
+    - Aktion = Zweimal infolge fürt in falscher Reihenfolge aus
+
+Fehlende Features:
+
+
+2. Extendedrechner
+
+Ideen:
+
+Bugs:
+
+Fehlende Features:

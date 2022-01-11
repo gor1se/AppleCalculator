@@ -9,15 +9,13 @@ let result = 0;
 
 
 const refreshDisplay = (value) => {
-    if((value.toString()).endsWith(',')){
-        value.replace(',','.');
-        value += '01';
-        console.log({value});
-        document.getElementById('display').innerHTML = (Number.parseFloat(value)).toLocaleString('de');
+    console.log({value});
+    if(value.toString().endsWith('.')) {
+        // Kommazahl aber noch keine Nachkommastellen
+        document.getElementById('display').innerHTML = (Number.parseFloat(value)).toLocaleString('de') + ",";
     } else {
         document.getElementById('display').innerHTML = (Number.parseFloat(value)).toLocaleString('de');
     }
-    
 }
 
 const adjustWidth = (value)=>{
@@ -50,69 +48,62 @@ document.getElementById('switch').addEventListener('change',() =>{
 const pressEquals = () => {
     toggleAnimation('btn-=', 'animation-3');
     if(action === 'addition'){
-        inputOne = inputOne.replace(',','.');
-        valueTwo = Number.parseFloat(inputOne);
+        valueOne = Number.parseFloat(inputOne);
         result = valueOne + valueTwo;
     }
     if(action === 'subtract'){
-        inputOne = inputOne.replace(',','.');
-        valueTwo = Number.parseFloat(inputOne);
-        result = valueOne - valueTwo;
+        valueOne = Number.parseFloat(inputOne);
+        result = valueTwo - valueOne;
     }
     if(action === 'multiply'){
-        inputOne = inputOne.replace(',','.');
-        valueTwo = Number.parseFloat(inputOne);
+        valueOne = Number.parseFloat(inputOne);
         result = valueOne * valueTwo;
     }
     if(action === 'divide'){
-        inputOne = inputOne.replace(',','.');
-        valueTwo = Number.parseFloat(inputOne);
-        result = valueOne / valueTwo;
+        valueOne = Number.parseFloat(inputOne);
+        result = valueTwo / valueOne;
     }
-    inputOne = result.toString();
-    //result=result.toString().replace(".",",");
-    refreshDisplay(result);
+    inputOne = result;
+    // inputOne = result.toLocaleString('de');
+    // result=result.toString().replace(".",",");
+    refreshDisplay(inputOne);
 
 }
 
 const pressAdd = () => {
     toggleAnimation('btn-+', 'animation-3');
-    inputOne = inputOne.replace(',','.');
-    valueOne = Number.parseFloat(inputOne);
+    valueTwo = Number.parseFloat(inputOne);
     inputOne = '0';
     action = 'addition';
 }
 
 const pressMinus = () => {
     toggleAnimation('btn--', 'animation-3');
-    inputOne = inputOne.replace(',','.');
-    valueOne = Number.parseFloat(inputOne);
+    valueTwo = Number.parseFloat(inputOne);
     inputOne = '0';
     action = 'subtract';
 }
 
 const pressMultiply = () => {
     toggleAnimation('btn-*', 'animation-3');
-    inputOne = inputOne.replace(',','.');
-    valueOne = Number.parseFloat(inputOne);
+    valueTwo = Number.parseFloat(inputOne);
     inputOne = '0';
     action = 'multiply';
 }
 
 const pressDivide = () => {
     toggleAnimation('btn-/', 'animation-3');
-    inputOne = inputOne.replace(',','.');
-    valueOne = Number.parseFloat(inputOne);
+    valueTwo = Number.parseFloat(inputOne);
     inputOne = '0';
     action = 'divide';
 }
 
 const pressChangeSign = () => {
     toggleAnimation('btn-Change', 'animation-2');
-    if(!(inputOne.includes('-'))){
+    if(!(inputOne.toString().includes('-'))){
         inputOne = '-' + inputOne;
     } else {
-        inputOne = inputOne.replace('-', '');
+        inputOne = inputOne.toString().replace('-', '');
     }
     refreshDisplay(inputOne);
 }
@@ -192,8 +183,8 @@ const pressComma = () => {
     //     inputOne = '0,'
     // }
 
-    if(!(inputOne.includes(','))){
-        inputOne += ',';
+    if(!(inputOne.includes('.'))){
+        inputOne += '.';
     }
     console.log({inputOne});
     refreshDisplay(inputOne);
@@ -463,8 +454,8 @@ const extended = `        <div class="row">
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk2" onclick="funk2()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk3" onclick="funk3()">-_-</button>
 <button class="btn btn-style-5" tapindex="-1" id="btn-funk4" onclick="funk4()">-_-</button>
-<button class="btn btn-style-5" tapindex="-1" id="btn-funk5" onclick="funk5()">-_-</button>
-<button class="btn btn-style-5" tapindex="-1" id="btn-funk6" onclick="funk6()">-_-</button>
+<button class="btn btn-style-5" tapindex="-1" id="btn-funk5" onclick="funk5()"><</button>
+<button class="btn btn-style-5" tapindex="-1" id="btn-funk6" onclick="funk6()">></button>
 <button class="btn btn-style-1" tapindex="-1" id="btn-AC" onclick="pressAC()">AC</button>
 <button class="btn btn-style-1" tapindex="-1" id="btn-Change"  onclick="pressChangeSign()">+/-</button>
 <button class="btn btn-style-1" tapindex="-1" id="btn-%"  onclick="pressPercent()">%</button>
